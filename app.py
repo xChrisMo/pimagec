@@ -1,9 +1,22 @@
+# import os
+# import logging
+# import warnings
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+# logging.getLogger('tensorflow').setLevel(logging.ERROR)
+# from absl import logging as absl_logging
+# absl_logging.set_verbosity(absl_logging.ERROR)
+# logging.getLogger('werkzeug').setLevel(logging.ERROR)
+# from urllib3.exceptions import NotOpenSSLWarning
+# warnings.filterwarnings("ignore", category=NotOpenSSLWarning)
+
+
 from flask import Flask, request, render_template, redirect, url_for
 import tensorflow as tf
 import numpy as np
 from PIL import Image
 import io, os, base64, csv
 from datetime import datetime
+
 
 app = Flask(__name__)
 
