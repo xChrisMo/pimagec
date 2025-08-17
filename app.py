@@ -20,8 +20,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# —————————————————————————————————————————————————————————
-# 1) Load model & class-names
+
 MODEL = tf.keras.models.load_model("model/mobilenetv2_finetuned.h5")
 with open("model/class_names.txt") as f:
     CLASS_NAMES = [l.strip() for l in f if l.strip()]
@@ -35,7 +34,7 @@ def prepare_image(bytestr, target_size=(224, 224)):
 def b64_image(bytestr, mime="image/jpeg"):
     return f"data:{mime};base64,{base64.b64encode(bytestr).decode()}"
 
-# —————————————————————————————————————————————————————————
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -69,7 +68,7 @@ def index():
 def feedback():
     # log feedback
     pred = request.form["predicted_class"]
-    vote = request.form["feedback"]           # "correct" or "incorrect"
+    vote = request.form["feedback"]           # basically "correct" or "incorrect"
     ts   = datetime.utcnow().isoformat(timespec="seconds")
 
     os.makedirs("logs", exist_ok=True)
